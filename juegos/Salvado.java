@@ -41,6 +41,7 @@ public class Salvado {
             if (seleccion < 0) {valido = false;}
 
             if (!valido) {System.out.println("Elija un numero adecuado");}
+            in.nextLine();
         } while (!valido);
 
         return seleccion;

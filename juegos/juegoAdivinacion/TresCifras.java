@@ -15,7 +15,7 @@ public class TresCifras extends JuegoAdivinacion{
         int y = in.nextInt();
         int z = in.nextInt();
         int[] lista = {x, y, z};
-
+        in.nextLine();
         return lista;
     }
 

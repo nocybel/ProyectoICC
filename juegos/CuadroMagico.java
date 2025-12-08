@@ -3,11 +3,10 @@
  * 
  * @author Iago HB
  */
-import java.util.Scanner;
-
 package juegos;
+import java.util.Scanner;
 public class CuadroMagico {
-
+    
     private int[][] tablero = new int[4][4]; // Tablero 4x4
     private int[] numsDisponibles = new int[16]; // Lista de numeros disponibles, es decir, los numeros que aun no estan en el tablero
 
@@ -117,7 +116,7 @@ public class CuadroMagico {
         do {
             // Se asume que valido es false, luego, si se cumplen ciertas condiciones, se vuelve true. 'x' y 'y' se inicializan por si acaso, realmente no importan
             valido = false;
-            x = -1; y = -1;
+            ficha = 0; x = -1; y = -1;
 
             System.out.println("¿Qué "+GRN+"número"+RESET+" quiere colocar?");
             ficha = in.nextInt();
@@ -138,10 +137,13 @@ public class CuadroMagico {
             if (x < 1 || x > 4 || y < 1 || y > 4) {valido = false;}
 
             // ...y que no haya numeros en esa casilla
-            if (tablero[x-1][y-1] != 0) {valido = false;}
+            if (tablero[y-1][x-1] != 0) {valido = false;}
 
             // Si no se completaron los checks de antes, se pide que se escoja un numero valido y se reinicia el bucle
             if (!valido) {System.out.println("\nEscoja un número válido\n");}
+
+            dibujarTablero(); // Se dibuja el tablero
+            in.nextLine();
         } while (!valido);
 
         //Si fue valido, se coloca la ficha en el tablero y se elimina de los numeros disponibles

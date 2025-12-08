@@ -12,6 +12,7 @@ public class NumSecreto extends JuegoAdivinacion {
         Scanner in = new Scanner(System.in);
         System.out.println("Adivine el numero secreto entre 0 y 10:");
         int adivinar = in.nextInt();
+        in.nextLine();
         return adivinar;
     }
 

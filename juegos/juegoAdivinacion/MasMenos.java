@@ -31,6 +31,7 @@ public class MasMenos extends JuegoAdivinacion {
                     if (adivinar < 1 || adivinar > 3) {throw new Exception();}
                     break;
                 } catch (Exception e) {
+                    in.nextLine();
                     System.out.println("Escriba una opcion correcta");
                 }
             } while (true);

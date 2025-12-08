@@ -3,9 +3,8 @@
  * 
  * @author Iago HB
  */
-import java.util.Scanner;
-
 package juegos;
+import java.util.Scanner;
 public class ConectaCuatro {
 
     private int[][] tablero = new int[6][7]; // Tablero 7x6 (7 de ancho y 6 de alto, pero puse las coordenadas chuecas y no las quiero cambiar)
