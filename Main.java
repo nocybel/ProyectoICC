@@ -1,48 +1,53 @@
 /**
- * mostrar top del jugador actual (seleccion 2)
- * sistema de dias
+ * Clase Main. Es un menu y tambien maneja el sistema de puntos, creditos y orden de completamiento de juegos
+ * 
+ * @author Iago HB
  */
 
 import juegos.*;
 
 import java.util.Scanner;
 public class Main {
+
+    /** 
+     * Metodo main. Probablemente hubiera sido mejor segmentar todo en varias fuciones pero ya lo hice asi y no quiero tocar mucho el codigo porque ya funciona
+     * Tratare de explicarlo con comentarios xd
+     */
     public static void main(String[] args) {
+        // Variables varias
+        Scanner in = new Scanner(System.in); // Scanner para leer input
+        Rewr rewr = new Rewr(); // ReadWrite para guardar y cargar puntaje
+        int seleccion, puntos = 0, creditos; // Seleccion para elegir cosas en los menus, puntos para llevar la cuenta de puntos actuales antes de guardarlos, creditos para llevar cuenta de creditos
 
-        //borrar o cambiar luego:
-        int dia = 1; //tiene que cambiar cada que abras el programa
-        //int creditos = 100; //creditos totales para ambos dias y para un solo jugador
+        // Leer el dia actual en el que se abre el juego
+        String[] diaTemp = rewr.leer("datosguardados/dia.txt"); // Variable que sirve para apoyar a la siguiente
+        int dia = Integer.parseInt(diaTemp[0]); // Dia actual
 
-        // Cosas que si sirven
-        Scanner in = new Scanner(System.in);
-        Rewr rewr = new Rewr();
-        int seleccion, puntos = 0;
-
+        // Strings para facilitar acceder a archivos importantes
         final String orden1 = "datosguardados/orden1.txt";
         final String orden2 = "datosguardados/orden2.txt";
         final String orden3 = "datosguardados/orden3.txt";
         final String orden4 = "datosguardados/orden4.txt";
         final String puntaje = "datosguardados/puntuacion.txt";
 
-        // Registrar jugador
+        // Se ingresa el nombre del jugador primero
         System.out.println("Ingrese su nombre:");
         String nombre = in.nextLine();
 
-        int creditos;
-
+        // Si el jugador no existe, se le asignan 100 creditos
         if (rewr.buscar(puntaje,"\""+nombre+"\"") == -1) {creditos = 100;}
-        else {
+        else { // Si el jugador existe, se cargan los creditos que tenia en su cuenta
             String[] texto = rewr.leer(puntaje);
             creditos = Integer.parseInt(texto[rewr.buscar(puntaje,"\""+nombre+"\"")].substring(0, texto[rewr.buscar(puntaje,"\""+nombre+"\"")].indexOf("\""+nombre+"\"")));
         }
 
+        // Se anuncian los creditos disponibles y se pregunta que quiere hacer
         System.out.println("Usted tiene " + creditos + " creditos");
-
         System.out.println("\n\nHola " + nombre + "\n\n¿Qué le gustaría hacer?");
 
-        do {
-            // Realizar la seleccion de menu
+        do { // Dentro de un bucle (para poder repetir el menu hasta que se quiera salir)
             
+            // Se realiza la seleccion de que se quiere hacer
             do {
                 seleccion = 0;
                 try {
@@ -59,12 +64,12 @@ public class Main {
                 }
             } while (true);
             
-            // Opcion de jugar
+            // Si se elije 1 (jugar), entonces sigue lo siguiente:
             if (seleccion == 1) {
-                switch (dia) {
+                switch (dia) { // Dependiendo del dia actual se muestran los juegos
 
                 case 1:
-                    // Se crean objetos de juego1 y juego2
+                     // En el dia uno hay CuadroMagico y ConectaCuatro
                     CuadroMagico juego1 = new CuadroMagico();
                     ConectaCuatro juego2 = new ConectaCuatro();
 
@@ -93,7 +98,7 @@ public class Main {
 
                         // Opciones para jugar un juego o salir
                         System.out.println("\n\n");
-                        if (seleccion == 1) {
+                        if (seleccion == 1) { // Secuencia de CuadroMagico
                             int puntoAct = juego1.jugar();
                             puntos += puntoAct;
                             creditos -= 15;
@@ -110,7 +115,7 @@ public class Main {
                             // Mostrar tu lugar
                             if (rewr.buscar(orden1,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden1, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
-                        if (seleccion == 2) {
+                        if (seleccion == 2) { // Secuencia de ConectaCuatro
                             int puntoAct = juego2.jugar();
                             puntos += puntoAct;
                             creditos -= 15;
@@ -126,20 +131,22 @@ public class Main {
 
                             if (rewr.buscar(orden2,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden2, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
-                        if (seleccion == 3) {
+                        if (seleccion == 3) { // Secuencia de salir
+                            // Leer puntaje, buscar el renglon donde estas registrado
                             String[] texto = rewr.leer(puntaje);
                             int jotaro = rewr.buscar(puntaje,"\""+nombre+"\"");
 
+                            // Si no estas registrado, se registran tus creditos, nombre y puntos
                             if (jotaro == -1) {
                                 rewr.escribirN(puntaje,creditos+"\""+nombre+"\""+puntos);
-                            } else {
+                            } else { // Si ya estas registrado, se actualizan tus creditos, nombre y puntos
                                 puntos += Integer.parseInt(texto[jotaro].substring(texto[jotaro].indexOf("\""+nombre+"\"")+nombre.length()+2));
                                 rewr.escribirO(puntaje,jotaro,creditos+"\""+nombre+"\""+puntos);
                             }
-                            puntos = 0;
-                            break;
+
+                            puntos = 0; // Como ya se depositaron los puntos, se vuelven 0
+                            break; // Salir
                         }
-                        System.out.println("\n\n");
 
                     } while (true);
 
@@ -147,12 +154,12 @@ public class Main {
 
                 case 2:
 
-                    // Se crean objetos de juego1 y juego2
+                    // En el dia 2 hay Salvado y AdivinaYSobrevive
                     Salvado juego3 = new Salvado();
                     AdivinaYSobrevive juego4 = new AdivinaYSobrevive();
 
                     // Anunciar el dia de hoy y los juegos disponibles
-                    System.out.println("Hoy es día 1\n\n");
+                    System.out.println("\nHoy es día 2");
 
                     do{
                         
@@ -176,7 +183,7 @@ public class Main {
 
                         // Opciones para jugar un juego o salir
                         System.out.println("\n\n");
-                        if (seleccion == 1) {
+                        if (seleccion == 1) { // Secuencia de Salvado
                             int puntoAct = juego3.jugar();
                             puntos += puntoAct;
                             if (puntoAct != 12) {creditos -= 15;}
@@ -192,7 +199,7 @@ public class Main {
 
                             if (rewr.buscar(orden3,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden3, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
-                        if (seleccion == 2) {
+                        if (seleccion == 2) { // Secuencia de AdivinaYSobrevive
                             int puntoAct = juego4.jugar();
                             puntos += puntoAct;
                             creditos -= 15;
@@ -208,7 +215,7 @@ public class Main {
 
                             if (rewr.buscar(orden4,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden4, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
-                        if (seleccion == 3) {
+                        if (seleccion == 3) { // Secuencia de salida. Es lo mismo que la del dia 1
                             String[] texto = rewr.leer(puntaje);
                             int jotaro = rewr.buscar(puntaje,"\""+nombre+"\"");
 
@@ -231,6 +238,7 @@ public class Main {
             }
             // Ver top 3 jugadores y puntuacion
             if (seleccion == 2) {
+                // Se lee la tabla de puntuaciones y se asignan, en 2 arreglos, los puntos y los nombres
                 System.out.println("");
                 String[] texto = rewr.leer(puntaje);
                 int[] puntajes = new int[texto.length];
@@ -242,7 +250,7 @@ public class Main {
                     nombres[i] = texto[i].substring(primeraComilla+1, texto[i].indexOf("\"", primeraComilla+1));
                 }
 
-                //bubblesort
+                //bubblesort para ordenar nombres y puntos por puntuacion
                 for (int i = 0; i < (puntajes.length - 1); i++) {
                     boolean swapped = false;
                     for (int j = 0; j < (puntajes.length - i - 1); j++) {
@@ -260,6 +268,7 @@ public class Main {
                     break;
                 }
 
+                // Mostrar el top3 (o top2 o top1 si no hay suficientes jugadores)
                 int cont = 0;
                 for(int i = 0; i < puntajes.length; i++) {
                     if (nombres[i] != null) {
@@ -269,15 +278,28 @@ public class Main {
                     if (cont >= 3) {break;}
                 }
                 System.out.println("");
+
+                // Mostrar top personal (por si no apareces en el top3 y quieres saber donde estas)
                 System.out.print("Tu posicion ");
 
-                //if ()
+                int topPersonal = -1;
+                for (int i = 0; i < nombres.length; i++) {
+                    if (nombres[i].equals(nombre)) {
+                        topPersonal = i;
+                        break;
+                    }
+                }
 
+                if (topPersonal == -1) {System.out.print("no esta registrada\n");}
+                else {System.out.print("es top " + (topPersonal + 1) + "\n");}
+
+                System.out.println("");
 
             }
-
             // Ver puntuacion personal
             if (seleccion == 3) {
+
+                // Se lee el texto, se busca el renglon donde apareces tu y se muestran tus puntos y creditos. Si no estas registrado se muestran los puntos y los creditos actuales
                 String[] texto = rewr.leer(puntaje);
                 int jotaro = rewr.buscar(puntaje,"\""+nombre+"\"");
                 if (jotaro == -1) {
@@ -294,6 +316,10 @@ public class Main {
             }
         } while (true);
 
+        // Cuando se sale del programa se cambia de dia para la siguiente vez que lo abras
+        if (dia == 1) {rewr.escribirO("datosguardados/dia.txt",0,"2");}
+        else {rewr.escribirO("datosguardados/dia.txt",0,"1");}
+        
         System.out.println("\n\nAdios :3");
     }
 }

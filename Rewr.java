@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 public class Rewr {
 
     // Metodos relacionados con leer archivos
+
+    /** Este metodo lee un archivo y lo regresa en forma de String[] */
     public String[] leer(String archivo) {
         int cont = 0;
         
@@ -34,6 +36,7 @@ public class Rewr {
         return backup;
     }
 
+    /** Este metodo devuelve la primera linea donde se encuentra un texto exacto */
     public int buscar(String archivo, String texto) {
         String[] lineas = leer(archivo);
 
@@ -46,6 +49,7 @@ public class Rewr {
         return -1;
     }
 
+    /** Este metodo regresa las primeras n lineas de un archivo */
     public String[] primerasLineas(String archivo, int fin) {
         String[] lineas = leer(archivo);
         String[] regreso = new String[fin];
@@ -60,6 +64,7 @@ public class Rewr {
 
     // Metodos relacionados con escribir archivos
 
+    /** Este metodo escribe un texto a un archivo en una nueva linea */
     public void escribirN(String archivo, String texto) {
         try (FileWriter wr = new FileWriter(archivo,true)) {
             wr.write(texto+"\n");
@@ -68,6 +73,7 @@ public class Rewr {
         }
     }
 
+    /** Este metodo escribe un texto a un archivo reemplazando una linea indicada */
     public void escribirO(String archivo, int linea, String texto) {
         String[] lineas = leer(archivo);
 
