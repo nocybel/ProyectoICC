@@ -99,7 +99,9 @@ public class Main {
                         // Opciones para jugar un juego o salir
                         System.out.println("\n\n");
                         if (seleccion == 1) { // Secuencia de CuadroMagico
-                            int puntoAct = juego1.jugar();
+                            int puntoAct;
+                            if (creditos >= 15) {puntoAct = juego1.jugar();}
+                            else {puntoAct = 0; System.out.println("No tiene suficientes creditos para jugar");break;}
                             puntos += puntoAct;
                             creditos -= 15;
 
@@ -116,7 +118,9 @@ public class Main {
                             if (rewr.buscar(orden1,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden1, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
                         if (seleccion == 2) { // Secuencia de ConectaCuatro
-                            int puntoAct = juego2.jugar();
+                            int puntoAct;
+                            if (creditos >= 15) {puntoAct = juego2.jugar();}
+                            else {puntoAct = 0; System.out.println("No tiene suficientes creditos para jugar");break;}
                             puntos += puntoAct;
                             creditos -= 15;
 
@@ -184,7 +188,9 @@ public class Main {
                         // Opciones para jugar un juego o salir
                         System.out.println("\n\n");
                         if (seleccion == 1) { // Secuencia de Salvado
-                            int puntoAct = juego3.jugar();
+                            int puntoAct;
+                            if (creditos >= 15) {puntoAct = juego3.jugar();}
+                            else {puntoAct = 0; System.out.println("No tiene suficientes creditos para jugar");break;}
                             puntos += puntoAct;
                             if (puntoAct != 12) {creditos -= 15;}
                             
@@ -200,7 +206,9 @@ public class Main {
                             if (rewr.buscar(orden3,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden3, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
                         if (seleccion == 2) { // Secuencia de AdivinaYSobrevive
-                            int puntoAct = juego4.jugar();
+                            int puntoAct;
+                            if (creditos >= 15) {puntoAct = juego4.jugar();}
+                            else {puntoAct = 0; System.out.println("No tiene suficientes creditos para jugar");break;}
                             puntos += puntoAct;
                             creditos -= 15;
                             
