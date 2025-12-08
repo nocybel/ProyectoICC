@@ -1,9 +1,5 @@
 /**
- * todo:
- * conecta4 muestra top 0 en vez de 1 (posiblemente con otros juegos igual)
- * al terminar un juego, no se checa si ya lo habias terminado antes entonces te agregas doble a una lista
- * 
- * ordenar y rankear jugadores
+ * mostrar top del jugador actual (seleccion 2)
  * sistema de dias
  */
 
@@ -15,7 +11,7 @@ public class Main {
 
         //borrar o cambiar luego:
         int dia = 1; //tiene que cambiar cada que abras el programa
-        int creditos = 100; //creditos totales para ambos dias y para un solo jugador
+        //int creditos = 100; //creditos totales para ambos dias y para un solo jugador
 
         // Cosas que si sirven
         Scanner in = new Scanner(System.in);
@@ -31,7 +27,16 @@ public class Main {
         // Registrar jugador
         System.out.println("Ingrese su nombre:");
         String nombre = in.nextLine();
-        int puntuacion1 = 0, puntuacion2 = 0, puntuacion3 = 0, puntuacion4 = 0;
+
+        int creditos;
+
+        if (rewr.buscar(puntaje,"\""+nombre+"\"") == -1) {creditos = 100;}
+        else {
+            String[] texto = rewr.leer(puntaje);
+            creditos = Integer.parseInt(texto[rewr.buscar(puntaje,"\""+nombre+"\"")].substring(0, texto[rewr.buscar(puntaje,"\""+nombre+"\"")].indexOf("\""+nombre+"\"")));
+        }
+
+        System.out.println("Usted tiene " + creditos + " creditos");
 
         System.out.println("\n\nHola " + nombre + "\n\n¿Qué le gustaría hacer?");
 
@@ -93,7 +98,7 @@ public class Main {
                             puntos += puntoAct;
                             creditos -= 15;
 
-                            if (puntoAct == 10) {rewr.escribirN(orden1, "\""+nombre+"\"");} // Registrar que completaste el juego
+                            if (rewr.buscar(orden1,"\""+nombre+"\"") == -1) {rewr.escribirN(orden1, "\""+nombre+"\"");} // Registrar que completaste el juego
 
                             // Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
@@ -110,8 +115,8 @@ public class Main {
                             puntos += puntoAct;
                             creditos -= 15;
 
-                            rewr.escribirN(orden2, "\""+nombre+"\""); // Registrar que completaste el juego
-
+                            if (rewr.buscar(orden2,"\""+nombre+"\"") == -1) {rewr.escribirN(orden2, "\""+nombre+"\"");} // Registrar que completaste el juego
+                            
                             //Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
                             String[] top3 = rewr.primerasLineas(orden2, 3);
@@ -119,17 +124,17 @@ public class Main {
                             if (top3[1] != null) {System.out.println("2: " + top3[1]);}
                             if (top3[2] != null) {System.out.println("3: " + top3[2]);}
 
-                            System.out.println("\nTu quedaste en el puesto " + rewr.buscar(orden2, "\""+nombre+"\"") + "\n\n");
+                            if (rewr.buscar(orden2,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden2, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
                         if (seleccion == 3) {
-                            String[] puntajes = rewr.leer(puntaje);
+                            String[] texto = rewr.leer(puntaje);
                             int jotaro = rewr.buscar(puntaje,"\""+nombre+"\"");
 
                             if (jotaro == -1) {
-                                rewr.escribirN(puntaje,"\""+nombre+"\""+puntos);
+                                rewr.escribirN(puntaje,creditos+"\""+nombre+"\""+puntos);
                             } else {
-                                puntos += Integer.parseInt(puntajes[jotaro].substring(nombre.length()+2));
-                                rewr.escribirO(puntaje,jotaro,"\""+nombre+"\""+puntos);
+                                puntos += Integer.parseInt(texto[jotaro].substring(texto[jotaro].indexOf("\""+nombre+"\"")+nombre.length()+2));
+                                rewr.escribirO(puntaje,jotaro,creditos+"\""+nombre+"\""+puntos);
                             }
                             puntos = 0;
                             break;
@@ -176,7 +181,7 @@ public class Main {
                             puntos += puntoAct;
                             if (puntoAct != 12) {creditos -= 15;}
                             
-                            rewr.escribirN(orden3, "\""+nombre+"\""); // Registrar que completaste el juego
+                            if (rewr.buscar(orden3,"\""+nombre+"\"") == -1) {rewr.escribirN(orden3, "\""+nombre+"\"");} // Registrar que completaste el juego
 
                             //Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
@@ -185,14 +190,14 @@ public class Main {
                             if (top3[1] != null) {System.out.println("2: " + top3[1]);}
                             if (top3[2] != null) {System.out.println("3: " + top3[2]);}
 
-                            System.out.println("\nTu quedaste en el puesto " + rewr.buscar(orden3, "\""+nombre+"\"") + "\n\n");
+                            if (rewr.buscar(orden3,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden3, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
                         if (seleccion == 2) {
                             int puntoAct = juego4.jugar();
                             puntos += puntoAct;
                             creditos -= 15;
                             
-                            rewr.escribirN(orden4, "\""+nombre+"\""); // Registrar que completaste el juego
+                            if (rewr.buscar(orden4,"\""+nombre+"\"") == -1) {rewr.escribirN(orden4, "\""+nombre+"\"");} // Registrar que completaste el juego
 
                             //Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
@@ -201,21 +206,19 @@ public class Main {
                             if (top3[1] != null) {System.out.println("2: " + top3[1]);}
                             if (top3[2] != null) {System.out.println("3: " + top3[2]);}
 
-                            System.out.println("\nTu quedaste en el puesto " + rewr.buscar(orden4, "\""+nombre+"\"") + "\n\n");
+                            if (rewr.buscar(orden4,"\""+nombre+"\"") != -1) {System.out.println("\nTu quedaste en el puesto " + (rewr.buscar(orden4, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
                         if (seleccion == 3) {
-                            String[] puntajes = rewr.leer(puntaje);
+                            String[] texto = rewr.leer(puntaje);
                             int jotaro = rewr.buscar(puntaje,"\""+nombre+"\"");
 
                             if (jotaro == -1) {
-                                rewr.escribirN(puntaje,"\""+nombre+"\""+puntos);
+                                rewr.escribirN(puntaje,creditos+"\""+nombre+"\""+puntos);
                             } else {
-                                puntos += Integer.parseInt(puntajes[jotaro].substring(nombre.length()+2));
-                                rewr.escribirO(puntaje,jotaro,"\""+nombre+"\""+puntos);
+                                puntos += Integer.parseInt(texto[jotaro].substring(texto[jotaro].indexOf("\""+nombre+"\"")+nombre.length()+2));
+                                rewr.escribirO(puntaje,jotaro,creditos+"\""+nombre+"\""+puntos);
                             }
                             puntos = 0;
-
-                            System.out.println("Adios :3");
                             break;
                         }
                         
@@ -228,16 +231,61 @@ public class Main {
             }
             // Ver top 3 jugadores y puntuacion
             if (seleccion == 2) {
-                
+                System.out.println("");
+                String[] texto = rewr.leer(puntaje);
+                int[] puntajes = new int[texto.length];
+                String[] nombres = new String[texto.length];
+
+                for (int i = 0; i < texto.length; i++) {
+                    int primeraComilla = texto[i].indexOf("\"");
+                    puntajes[i] = Integer.parseInt(texto[i].substring(texto[i].indexOf("\"", primeraComilla+1)+1));
+                    nombres[i] = texto[i].substring(primeraComilla+1, texto[i].indexOf("\"", primeraComilla+1));
+                }
+
+                //bubblesort
+                for (int i = 0; i < (puntajes.length - 1); i++) {
+                    boolean swapped = false;
+                    for (int j = 0; j < (puntajes.length - i - 1); j++) {
+                        if (puntajes[j] < puntajes[j + 1]) {
+                            int temp = puntajes[j];
+                            String tempS = nombres[j];
+                            puntajes[j] = puntajes[j + 1];
+                            nombres[j] = nombres[j + 1];
+                            puntajes[j + 1] = temp;
+                            nombres[j + 1] = tempS;
+                            swapped = true;
+                        }
+                    }
+                    if (swapped == false)
+                    break;
+                }
+
+                int cont = 0;
+                for(int i = 0; i < puntajes.length; i++) {
+                    if (nombres[i] != null) {
+                        System.out.println("Top " + (i+1) + ": " + nombres[i] + " con " + puntajes[i] + " puntos");
+                        cont++;
+                    }
+                    if (cont >= 3) {break;}
+                }
+                System.out.println("");
+                System.out.print("Tu posicion ");
+
+                //if ()
+
+
             }
+
             // Ver puntuacion personal
             if (seleccion == 3) {
                 String[] texto = rewr.leer(puntaje);
                 int jotaro = rewr.buscar(puntaje,"\""+nombre+"\"");
                 if (jotaro == -1) {
                     System.out.println("\nPuntaje personal: " + puntos);
+                    System.out.println("Creditos Restantes: " + creditos);
                 } else {
-                    System.out.println("\nPuntaje personal: " + (texto[jotaro].substring(nombre.length()+2)));
+                    System.out.println("\nPuntaje personal: " + (texto[jotaro].substring(texto[jotaro].indexOf("\""+nombre+"\"")+nombre.length()+2)));
+                    System.out.println("Creditos Restantes: " + creditos);
                 }
             }
             // Salir

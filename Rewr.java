@@ -69,18 +69,15 @@ public class Rewr {
     }
 
     public void escribirO(String archivo, int linea, String texto) {
-
         String[] lineas = leer(archivo);
 
         lineas[linea] = texto;
 
-
-        for (int i = 0; i < lineas.length; i++) {
-            try (FileWriter wr = new FileWriter(archivo,false)) {
-                wr.write(lineas[i]+"\n");
-            } catch (Exception e) {
-                System.out.println("No se pudo escribir en el archivo :C");
+        try (FileWriter wr = new FileWriter(archivo,false)) {
+            for (int i = 0; i < lineas.length; i++) {wr.write(lineas[i]+"\n");
             }
+        } catch (Exception e) {
+            System.out.println("No se pudo escribir en el archivo :C");
         }
     }
 
