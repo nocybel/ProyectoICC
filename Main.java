@@ -13,14 +13,32 @@ public class Main {
         int seleccion, puntos = 0;
 
         // Registrar jugador
-            //todo: leer y escribir en un texto
-        // Ver top 3 jugadores y puntuacion
-        
-        // Ver puntuacion personal
+        System.out.println("Ingrese su nombre:");
+        String nombre = in.nextLine();
 
-        // Salir del programa
+        System.out.println("Hola " + nombre + "\n¿Qué le gustaría hacer?");
+
+        do {
+        // Realizar la seleccion de menu
+        seleccion = 0;
+        do {
+            try {
+                System.out.println("1. Jugar\n2. Ver mejores 3 jugadores\n3. Ver puntos acumulados\n4. Salir");
+                seleccion = in.nextInt();
+                if (seleccion > 4) {throw new Exception();}
+                if (seleccion < 1) {throw new Exception();}
+                break;
+            } catch (Exception e) {
+                seleccion = 0;
+                System.out.println("\nEscriba una opcion válida\n");
+            }
+        } while (true);
+        
+        
+
 
         // Opcion de jugar
+        if (seleccion == 1) {
         switch (dia) {
 
         case 1:
@@ -37,13 +55,15 @@ public class Main {
             System.out.println("Juegos disponibles:\n1. Cuadro Magico (x creditos)\n2. Conecta Cuatro (x creditos)\n3. Salir\n");
 
             // Realizar la seleccion de juego
+            seleccion = 0;
             do {
                 try {
                     System.out.println("¿Qué quiere jugar?");
                     seleccion = in.nextInt();
                     if (seleccion > 3) {throw new Exception();}
                     if (seleccion < 1) {throw new Exception();}
-                    break;                    } catch (Exception e) {
+                    break;
+                } catch (Exception e) {
                     seleccion = 0;
                     System.out.println("\nEscriba una opcion válida\n");
                 }
@@ -97,9 +117,9 @@ public class Main {
             // Opciones para jugar un juego o salir
             System.out.println("\n\n");
             if (seleccion == 1) {
-                puntos += juego3.jugar();
-                creditos -= 15;
-                // todo: si los puntos que gana son 12, no se consumen creditos
+                int puntosTemp = juego3.jugar();
+                puntos += puntosTemp;
+                if (puntosTemp != 12) {creditos -= 15;}
                 // todo: hacer que se muestre los primeros 3 jugadores en terminar el juego, y guardar todos los jugadores que lo han completado jamas, y mostrar el lugar en el que lo terminaste tu ???
             }
             if (seleccion == 2) {
@@ -114,7 +134,16 @@ public class Main {
 
             break;
         }
+        }
+        if (seleccion == 2) {
+        // Ver top 3 jugadores y puntuacion
+        }
+        if (seleccion == 3) {
+        // Ver puntuacion personal
+        }
+        if (seleccion == 4) {break;}
+        } while (true);
 
+        //secuencia de salida:
     }
-
 }
