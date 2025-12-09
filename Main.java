@@ -110,11 +110,14 @@ public class Main {
                             if (rewr.buscar(orden1,"\""+nombre+"\"") == -1 && puntoAct == 10) {rewr.escribirN(orden1, "\""+nombre+"\"");} // Registrar que completaste el juego
 
                             // Mostrar top3
-                            System.out.println("\nPrimeros 3 jugadores en terminar:\n");
-                            String[] top3 = rewr.primerasLineas(orden1, 3);
-                            if (top3[0] != null) {System.out.println("1: " + top3[0]);}
-                            if (top3[1] != null) {System.out.println("2: " + top3[1]);}
-                            if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            String[] temp = rewr.leer(orden1);
+                            if (temp.length != 0) {
+                                System.out.println("\nPrimeros 3 jugadores en terminar:\n");
+                                String[] top3 = rewr.primerasLineas(orden1, 3);
+                                if (top3[0] != null) {System.out.println("1: " + top3[0]);}
+                                if (top3[1] != null) {System.out.println("2: " + top3[1]);}
+                                if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            }
 
                             // Mostrar tu lugar
                             if (rewr.buscar(orden1,"\""+nombre+"\"") != -1) {System.out.println("\nTú quedaste en el puesto " + (rewr.buscar(orden1, "\""+nombre+"\"") + 1) + "\n\n");}
@@ -128,12 +131,15 @@ public class Main {
 
                             if (rewr.buscar(orden2,"\""+nombre+"\"") == -1 && puntoAct != 0 && puntoAct != 2) {rewr.escribirN(orden2, "\""+nombre+"\"");} // Registrar que completaste el juego
                             
-                            //Mostrar top3
-                            System.out.println("\nPrimeros 3 jugadores en terminar:\n");
-                            String[] top3 = rewr.primerasLineas(orden2, 3);
-                            if (top3[0] != null) {System.out.println("1: " + top3[0]);}
-                            if (top3[1] != null) {System.out.println("2: " + top3[1]);}
-                            if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            // Mostrar top3
+                            String[] temp = rewr.leer(orden2);
+                            if (temp.length != 0) {
+                                System.out.println("\nPrimeros 3 jugadores en terminar:\n");
+                                String[] top3 = rewr.primerasLineas(orden2, 3);
+                                if (top3[0] != null) {System.out.println("1: " + top3[0]);}
+                                if (top3[1] != null) {System.out.println("2: " + top3[1]);}
+                                if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            }
 
                             if (rewr.buscar(orden2,"\""+nombre+"\"") != -1) {System.out.println("\nTú quedaste en el puesto " + (rewr.buscar(orden2, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
@@ -198,12 +204,15 @@ public class Main {
                             
                             if (rewr.buscar(orden3,"\""+nombre+"\"") == -1) {rewr.escribirN(orden3, "\""+nombre+"\"");} // Registrar que completaste el juego
 
-                            //Mostrar top3
-                            System.out.println("\nPrimeros 3 jugadores en terminar:\n");
-                            String[] top3 = rewr.primerasLineas(orden3, 3);
-                            if (top3[0] != null) {System.out.println("1: " + top3[0]);}
-                            if (top3[1] != null) {System.out.println("2: " + top3[1]);}
-                            if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            // Mostrar top3
+                            String[] temp = rewr.leer(orden3);
+                            if (temp.length != 0) {
+                                System.out.println("\nPrimeros 3 jugadores en terminar:\n");
+                                String[] top3 = rewr.primerasLineas(orden3, 3);
+                                if (top3[0] != null) {System.out.println("1: " + top3[0]);}
+                                if (top3[1] != null) {System.out.println("2: " + top3[1]);}
+                                if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            }
 
                             if (rewr.buscar(orden3,"\""+nombre+"\"") != -1) {System.out.println("\nTú quedaste en el puesto " + (rewr.buscar(orden3, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
@@ -216,12 +225,15 @@ public class Main {
                             
                             if (rewr.buscar(orden4,"\""+nombre+"\"") == -1 && puntoAct != 1 && puntoAct != 0) {rewr.escribirN(orden4, "\""+nombre+"\"");} // Registrar que completaste el juego
 
-                            //Mostrar top3
-                            System.out.println("\nPrimeros 3 jugadores en terminar:\n");
-                            String[] top3 = rewr.primerasLineas(orden4, 3);
-                            if (top3[0] != null) {System.out.println("1: " + top3[0]);}
-                            if (top3[1] != null) {System.out.println("2: " + top3[1]);}
-                            if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            // Mostrar top3
+                            String[] temp = rewr.leer(orden3);
+                            if (temp.length != 0) {
+                                System.out.println("\nPrimeros 3 jugadores en terminar:\n");
+                                String[] top3 = rewr.primerasLineas(orden3, 3);
+                                if (top3[0] != null) {System.out.println("1: " + top3[0]);}
+                                if (top3[1] != null) {System.out.println("2: " + top3[1]);}
+                                if (top3[2] != null) {System.out.println("3: " + top3[2]);}
+                            }
 
                             if (rewr.buscar(orden4,"\""+nombre+"\"") != -1) {System.out.println("\nTú quedaste en el puesto " + (rewr.buscar(orden4, "\""+nombre+"\"") + 1) + "\n\n");}
                         }
