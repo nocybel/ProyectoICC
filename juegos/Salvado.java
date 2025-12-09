@@ -40,7 +40,7 @@ public class Salvado {
             if (seleccion > 99) {valido = false;}
             if (seleccion < 0) {valido = false;}
 
-            if (!valido) {System.out.println("Elija un numero adecuado");}
+            if (!valido) {System.out.println("Elija un número adecuado");}
             in.nextLine();
         } while (!valido);
 
@@ -57,7 +57,7 @@ public class Salvado {
         // Se sientan a todas las personas
         for(int i = 0; i < 100; i++) {gente[i] = true;}
 
-        System.out.println("Imagina un circulo de 100 personas en una silla, numerados del 1 al 100");
+        System.out.println("Imagina un círculo de 100 personas sentadas cada una en una silla, numeradas del 1 al 100");
 
         // Se hace la seleccion
         do { 
@@ -86,7 +86,7 @@ public class Salvado {
             // Se mata a la persona encontrada y se imprime una tira representante de las personas que siguen vivas
             gente[posicion] = false;
             if (cont < 99) {
-                System.out.println("Persona " + (1 + posicion) + " tuvo una muerte tragica :c");
+                System.out.println("Persona " + (1 + posicion) + " tuvo una muerte trágica :c");
 
                 for(int i = 0; i < 100; i++) {
                     if (gente[i]) {

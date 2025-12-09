@@ -10,7 +10,7 @@ public class NumSecreto extends JuegoAdivinacion {
     /** Metodo auxiliar para que el usuario escriba un numero */
     private int adivinar() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Adivine el numero secreto entre 0 y 10:");
+        System.out.println("Adivine el número secreto entre 0 y 10:");
         int adivinar = in.nextInt();
         in.nextLine();
         return adivinar;
@@ -34,13 +34,13 @@ public class NumSecreto extends JuegoAdivinacion {
                     adivinar = adivinar();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Escriba un numero entero");
+                    System.out.println("Escriba un número entero");
                 }
             } while (true);
             
             if (adivinar == numSecreto) {break;}
-            if (adivinar < numSecreto) {System.out.println("El numero es mayor");vecesPerdidas++;}
-            if (adivinar > numSecreto) {System.out.println("El numero es menor");vecesPerdidas++;}
+            if (adivinar < numSecreto) {System.out.println("El número es mayor");vecesPerdidas++;}
+            if (adivinar > numSecreto) {System.out.println("El número es menor");vecesPerdidas++;}
 
             if (vecesPerdidas >= vidas) {return -1;}
 

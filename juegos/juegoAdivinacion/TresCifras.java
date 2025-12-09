@@ -10,7 +10,7 @@ public class TresCifras extends JuegoAdivinacion{
     /** Metodo auxiliar para que el usuario escriba los numeros */
     private int[] elegirFichas() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Escribe el numero con las 3 cifras separadas por espacios");
+        System.out.println("Escribe un número de 3 cifras separadas por espacios");
         int x = in.nextInt();
         int y = in.nextInt();
         int z = in.nextInt();
@@ -39,16 +39,16 @@ public class TresCifras extends JuegoAdivinacion{
                     lista = elegirFichas();
                     break;
                 } catch (Exception e) {
-                    System.out.println("Escriba numeros enteros solamente");
+                    System.out.println("Escriba números enteros solamente");
                 }
             } while (true);
 
             if (lista[0] == num1 && lista[1] == num2 && lista[2] == num3) {System.out.println("Ganaste");break;}
 
-            if (lista[0] == num1) {System.out.println("El primer numero es correcto");}
-            if (lista[1] == num2) {System.out.println("El segundo numero es correcto");}
-            if (lista[2] == num3) {System.out.println("El tercer numero es correcto");}
-            if (lista[0] != num1 && lista[1] != num2 && lista[2] != num3) {System.out.println("Ningun numero es correcto");}
+            if (lista[0] == num1) {System.out.println("El primer número es correcto");}
+            if (lista[1] == num2) {System.out.println("El segundo número es correcto");}
+            if (lista[2] == num3) {System.out.println("El tercer número es correcto");}
+            if (lista[0] != num1 && lista[1] != num2 && lista[2] != num3) {System.out.println("Ningún número es correcto");}
 
             vecesPerdidas++;
             if (vecesPerdidas >= vidas) {return -1;}

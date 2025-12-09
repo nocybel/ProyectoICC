@@ -20,10 +20,10 @@ public class MasMenos extends JuegoAdivinacion {
 
         System.out.println("Vidas restantes: " + (vidas - vecesPerdidas));
 
-        System.out.println("El numero es " + numero);
+        System.out.println("El número es " + numero);
 
         do {
-            System.out.println("Crees que el numero oculto es:\n1. Igual\n2. Menor\n3. Mayor");
+            System.out.println("¿Crees que el número oculto es...?\n1. Igual\n2. Menor\n3. Mayor");
 
             do {
                 try{
@@ -32,19 +32,19 @@ public class MasMenos extends JuegoAdivinacion {
                     break;
                 } catch (Exception e) {
                     in.nextLine();
-                    System.out.println("Escriba una opcion correcta");
+                    System.out.println("Escriba una opción válida");
                 }
             } while (true);
 
             switch (adivinar) {
                 case 1:
-                    if (numero == numeroOculto) {System.out.println("Ganaste");return vecesPerdidas;} else {System.out.println("El numero oculto no es igual a " + numero);vecesPerdidas++;}
+                    if (numero == numeroOculto) {System.out.println("Ganaste");return vecesPerdidas;} else {System.out.println("El número oculto no es igual a " + numero);vecesPerdidas++;}
                     break;
                 case 2:
-                    if (numero < numeroOculto) {System.out.println("Ganaste");return vecesPerdidas;} else {System.out.println("El numero oculto no es menor a " + numero);vecesPerdidas++;}
+                    if (numero < numeroOculto) {System.out.println("Ganaste");return vecesPerdidas;} else {System.out.println("El número oculto no es menor a " + numero);vecesPerdidas++;}
                     break;
                 case 3:
-                    if (numero > numeroOculto) {System.out.println("Ganaste");return vecesPerdidas;} else {System.out.println("El numero oculto no es mayor a " + numero);vecesPerdidas++;}
+                    if (numero > numeroOculto) {System.out.println("Ganaste");return vecesPerdidas;} else {System.out.println("El número oculto no es mayor a " + numero);vecesPerdidas++;}
                     break;
             }
 

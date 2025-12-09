@@ -38,7 +38,7 @@ public class CuadroMagico {
         return texto;
     }
 
-    /** Este metodo imprime el tablero y la lista de numeros disponibles. Amarillo significa que son los numeros default, verde son los numeros que puso el usuario, cyan es solo para que preste atencion */
+    /** Este metodo imprime el tablero. Amarillo significa que son los numeros default, verde son los numeros que puso el usuario, cyan es solo para que preste atencion */
     private void dibujarTablero() {
         System.out.println("\n╔════"+CYN+"1"+RESET+"═══╦════"+CYN+"2"+RESET+"═══╦════"+CYN+"3"+RESET+"═══╦════"+CYN+"4"+RESET+"═══╗");
         System.out.println("║        ║        ║        ║        ║");
@@ -56,9 +56,12 @@ public class CuadroMagico {
         System.out.println("║        ║        ║        ║        ║");
         System.out.println(CYN+"4"+RESET+"   "+GRN+ficha(tablero[3][0])+RESET+"   ║   "+GRN+ficha(tablero[3][1])+RESET+"   ║   "+GRN+ficha(tablero[3][2])+RESET+"   ║   "+YLW+ficha(tablero[3][3])+RESET+"   ║");
         System.out.println("║        ║        ║        ║        ║");
-        System.out.println("╚════════╩════════╩════════╩════════╝\n");
+        System.out.println("╚════════╩════════╩════════╩════════╝\n");        
+    }
 
-        System.out.print("Numeros restantes:\n| ");
+    /** Este metodo lista los numeros restantes que tiene el jugador */
+    private void numerosRestantes() {
+        System.out.print("Números restantes:\n| ");
         for(int i = 0; i < 16; i++) {
             if (numsDisponibles[i] != 0) {System.out.print(GRN + ficha(numsDisponibles[i]) + RESET + " | ");}
         }
@@ -142,7 +145,6 @@ public class CuadroMagico {
             // Si no se completaron los checks de antes, se pide que se escoja un numero valido y se reinicia el bucle
             if (!valido) {System.out.println("\nEscoja un número válido\n");}
 
-            dibujarTablero(); // Se dibuja el tablero
             in.nextLine();
         } while (!valido);
 
@@ -192,6 +194,7 @@ public class CuadroMagico {
         // Dentro de un bucle:
         do {
             dibujarTablero(); // Se dibuja el tablero
+            numerosRestantes(); // Se imprimen numeros restantes
 
             // Se intenta colocar la ficha. Esta rodeada de un try-catch y un do-while asegurarse que SI coloques una ficha antes de continuar
             do {try {

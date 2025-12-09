@@ -97,7 +97,7 @@ public class ConectaCuatro {
             if(arcade) {
                 x = generarNumero(0,6);
             } else {
-                if(turno) {System.out.println(RED+"Elija una columa"+RESET);} else {System.out.println(BLU+"Elija una columa"+RESET);}
+                if(turno) {System.out.println(RED+"Elija una columna"+RESET);} else {System.out.println(BLU+"Elija una columba"+RESET);}
                 x = in.nextInt();
                 x--;
             }
@@ -190,7 +190,7 @@ public class ConectaCuatro {
             else if (seleccion == 2) {arcade = false;}
             else {throw new Exception();}
         } catch (Exception e) {
-            System.out.println("Opcion invalida, por defecto se eligirá modo "+CYN+"arcade");
+            System.out.println("Opción inválida, por defecto se eligirá modo "+CYN+"arcade");
             arcade = true;
         }
 
@@ -208,7 +208,7 @@ public class ConectaCuatro {
                 colocarFicha(2, arcade);
             }
             } catch (Exception e) {
-                System.out.println("Opción invalida, intente de nuevo");
+                System.out.println("Opción inválida, intente de nuevo");
                 turno = !turno; // Se cambia de turno si no se pudo colocar la ficha para que se vuelva a cambiar y en total no se cambie de turno
             }
 
