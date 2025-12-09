@@ -1,4 +1,4 @@
-# ProyectoICC
+# Un Día de Feria - ProyectoICC
 ## Información de autor:
 - Nombre: Iago Hernández Bautista
 - No. cuenta: ```323256223```
