@@ -9,11 +9,11 @@ Paso 1: Copie el repositorio a su computadora. Asegurese de tener JDK instalado.
 
 Paso 2: Cuando haya copiado el repositorio, entre a la carpeta raiz desde su terminal y escriba:
 
-```javac *.java```.
+```javac *.java```
 
 Paso 3: Una vez realizado el paso 2 ya puede abrir el juego. Para abrirlo, escriba en su terminal desde el directorio raiz:
 
-```java Main```.
+```java Main```
 _______________________________
 ## Cómo jugar
 Una vez tenga abierto el juego en su terminal, se le pedirá que ingrese un nombre. Sugiero escribir un nombre simple y corto, ya que con este va a guardar su puntuación y creditos, y si quiere abrir el juego en el futuro con sus datos guardados tendrá que escribir el nombre exacto.
