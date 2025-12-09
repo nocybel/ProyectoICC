@@ -13,6 +13,9 @@ public class Main {
      * Tratare de explicarlo con comentarios xd
      */
     public static void main(String[] args) {
+        // Titulo xd
+        System.out.println("\nUN DÍA DE FERIA - PROYECTO ICC\nPor: Iago HB\n");
+
         // Variables varias
         Scanner in = new Scanner(System.in); // Scanner para leer input
         Rewr rewr = new Rewr(); // ReadWrite para guardar y cargar puntaje
