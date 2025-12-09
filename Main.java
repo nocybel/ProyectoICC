@@ -4,9 +4,8 @@
  * @author Iago HB
  */
 
-import juegos.*;
-
 import java.util.Scanner;
+import juegos.*;
 public class Main {
 
     /** 
@@ -105,7 +104,7 @@ public class Main {
                             puntos += puntoAct;
                             creditos -= 15;
 
-                            if (rewr.buscar(orden1,"\""+nombre+"\"") == -1) {rewr.escribirN(orden1, "\""+nombre+"\"");} // Registrar que completaste el juego
+                            if (rewr.buscar(orden1,"\""+nombre+"\"") == -1 && puntoAct == 10) {rewr.escribirN(orden1, "\""+nombre+"\"");} // Registrar que completaste el juego
 
                             // Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
@@ -124,7 +123,7 @@ public class Main {
                             puntos += puntoAct;
                             creditos -= 15;
 
-                            if (rewr.buscar(orden2,"\""+nombre+"\"") == -1) {rewr.escribirN(orden2, "\""+nombre+"\"");} // Registrar que completaste el juego
+                            if (rewr.buscar(orden2,"\""+nombre+"\"") == -1 && puntoAct != 0 && puntoAct != 2) {rewr.escribirN(orden2, "\""+nombre+"\"");} // Registrar que completaste el juego
                             
                             //Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
@@ -212,7 +211,7 @@ public class Main {
                             puntos += puntoAct;
                             creditos -= 15;
                             
-                            if (rewr.buscar(orden4,"\""+nombre+"\"") == -1) {rewr.escribirN(orden4, "\""+nombre+"\"");} // Registrar que completaste el juego
+                            if (rewr.buscar(orden4,"\""+nombre+"\"") == -1 && puntoAct != 1 && puntoAct != 0) {rewr.escribirN(orden4, "\""+nombre+"\"");} // Registrar que completaste el juego
 
                             //Mostrar top3
                             System.out.println("\nPrimeros 3 jugadores en terminar:\n");
